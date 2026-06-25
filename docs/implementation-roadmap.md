@@ -89,7 +89,7 @@ The original local folder is not edited. This redesign turns the cloned portfoli
 - Completed asset optimization pass:
   - compressed the ChatGPT-generated brand mark, Apple touch image, and Open Graph image before wiring them into metadata,
   - replaced the About profile image with an optimized WebP version,
-  - replaced certificate carousel images with optimized WebP versions,
+  - restored the certificate carousel to compressed JPG files at the original stable public URLs after live WebP certificate links failed,
   - removed unused large original PNG/JPEG source files from `public`.
 
 ## Verification Log
@@ -115,8 +115,10 @@ The original local folder is not edited. This redesign turns the cloned portfoli
 | Screenshot optimization build | Passed | `npm.cmd run build` completed successfully. Homepage route size is now 32.8 kB. |
 | Brand asset lint | Passed | `npm.cmd run lint` completed with no warnings or errors after favicon and social preview metadata update. |
 | Brand asset build | Passed | `npm.cmd run build` completed successfully. Static `/icon.png`, `/apple-icon.png`, and social preview assets are available; the dynamic `/opengraph-image` route was removed. |
-| Asset optimization lint | Passed | `npm.cmd run lint` completed with no warnings or errors after replacing profile and certificate images with optimized WebP assets. |
+| Asset optimization lint | Passed | `npm.cmd run lint` completed with no warnings or errors after replacing the profile image and optimizing certificate assets. |
 | Asset optimization build | Passed | `npm.cmd run build` completed successfully after replacing profile/certification images and wiring the compressed Open Graph JPEG. |
+| Certificate image link fix lint | Passed | `npm.cmd run lint` completed with no warnings or errors after restoring certificate references to compressed JPG assets. |
+| Certificate image link fix build | Passed | `npm.cmd run build` completed successfully. The certificate carousel now uses stable `/certificates/*.jpg` public paths. |
 | Desktop screenshot | Complete by supplied assets | User supplied desktop screenshots; optimized WebP versions are wired into case studies. |
 | Mobile screenshot | Complete by supplied assets | User supplied mobile screenshots; optimized WebP versions are wired into case studies. |
 
