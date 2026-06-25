@@ -46,6 +46,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: ["/favicon.ico"],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -57,10 +65,11 @@ export const metadata: Metadata = {
       "Websites, CMS platforms, SaaS landing pages, and AI-enabled web tools built with clear communication and production-ready execution.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "https://www.olomukoro.uk/og-image.png",
         width: 1200,
         height: 630,
         alt: "Alexander Olomukoro freelance web and AI development services",
+        type: "image/png",
       },
     ],
   },
@@ -70,7 +79,7 @@ export const metadata: Metadata = {
       "Alexander Olomukoro | Freelance Web Developer & AI Integration Specialist",
     description:
       "I build websites, CMS platforms, SaaS landing pages, and AI-enabled web tools for clients who want clarity from discovery to launch.",
-    images: ["/opengraph-image"],
+    images: ["https://www.olomukoro.uk/og-image.png"],
     creator: "@xandersavage7",
   },
   robots: {

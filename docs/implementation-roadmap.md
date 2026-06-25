@@ -80,6 +80,12 @@ The original local folder is not edited. This redesign turns the cloned portfoli
   - removed old unused case-study PNG/placeholder assets,
   - updated Rammies Vacation, Fosh Estate, Three Hills Equipment, and Palma Wallet to use optimized screenshots,
   - fixed the project modal gallery so thumbnail clicks and previous/next controls update the main image.
+- Completed brand favicon and social preview pass:
+  - generated three AI-assisted AO monogram logo concepts and saved the concept board in `public/brand`,
+  - implemented the Bracket-style AO mark as a production SVG and PNG social avatar,
+  - replaced the default favicon/app icons with the AO brand mark,
+  - replaced the dynamic Open Graph image route with a static `public/og-image.png` for more reliable WhatsApp/Meta previews,
+  - updated metadata icons, Open Graph image, and Twitter image references.
 
 ## Verification Log
 
@@ -102,6 +108,8 @@ The original local folder is not edited. This redesign turns the cloned portfoli
 | Testimonial visibility build | Passed | `npm.cmd run build` completed successfully. Homepage route size is now 32.4 kB. |
 | Screenshot optimization lint | Passed | `npm.cmd run lint` completed with no warnings or errors after WebP wiring and gallery controls. |
 | Screenshot optimization build | Passed | `npm.cmd run build` completed successfully. Homepage route size is now 32.8 kB. |
+| Brand asset lint | Passed | `npm.cmd run lint` completed with no warnings or errors after favicon and social preview metadata update. |
+| Brand asset build | Passed | `npm.cmd run build` completed successfully. Static `/icon.png`, `/apple-icon.png`, and `/og-image.png` assets are available; the dynamic `/opengraph-image` route was removed. |
 | Desktop screenshot | Complete by supplied assets | User supplied desktop screenshots; optimized WebP versions are wired into case studies. |
 | Mobile screenshot | Complete by supplied assets | User supplied mobile screenshots; optimized WebP versions are wired into case studies. |
 
