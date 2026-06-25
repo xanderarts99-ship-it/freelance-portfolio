@@ -84,8 +84,13 @@ The original local folder is not edited. This redesign turns the cloned portfoli
   - generated three AI-assisted AO monogram logo concepts and saved the concept board in `public/brand`,
   - implemented the Bracket-style AO mark as a production SVG and PNG social avatar,
   - replaced the default favicon/app icons with the AO brand mark,
-  - replaced the dynamic Open Graph image route with a static `public/og-image.png` for more reliable WhatsApp/Meta previews,
+  - replaced the dynamic Open Graph image route with a static optimized `public/og-image.jpg` for more reliable WhatsApp/Meta previews,
   - updated metadata icons, Open Graph image, and Twitter image references.
+- Completed asset optimization pass:
+  - compressed the ChatGPT-generated brand mark, Apple touch image, and Open Graph image before wiring them into metadata,
+  - replaced the About profile image with an optimized WebP version,
+  - replaced certificate carousel images with optimized WebP versions,
+  - removed unused large original PNG/JPEG source files from `public`.
 
 ## Verification Log
 
@@ -109,7 +114,9 @@ The original local folder is not edited. This redesign turns the cloned portfoli
 | Screenshot optimization lint | Passed | `npm.cmd run lint` completed with no warnings or errors after WebP wiring and gallery controls. |
 | Screenshot optimization build | Passed | `npm.cmd run build` completed successfully. Homepage route size is now 32.8 kB. |
 | Brand asset lint | Passed | `npm.cmd run lint` completed with no warnings or errors after favicon and social preview metadata update. |
-| Brand asset build | Passed | `npm.cmd run build` completed successfully. Static `/icon.png`, `/apple-icon.png`, and `/og-image.png` assets are available; the dynamic `/opengraph-image` route was removed. |
+| Brand asset build | Passed | `npm.cmd run build` completed successfully. Static `/icon.png`, `/apple-icon.png`, and social preview assets are available; the dynamic `/opengraph-image` route was removed. |
+| Asset optimization lint | Passed | `npm.cmd run lint` completed with no warnings or errors after replacing profile and certificate images with optimized WebP assets. |
+| Asset optimization build | Passed | `npm.cmd run build` completed successfully after replacing profile/certification images and wiring the compressed Open Graph JPEG. |
 | Desktop screenshot | Complete by supplied assets | User supplied desktop screenshots; optimized WebP versions are wired into case studies. |
 | Mobile screenshot | Complete by supplied assets | User supplied mobile screenshots; optimized WebP versions are wired into case studies. |
 

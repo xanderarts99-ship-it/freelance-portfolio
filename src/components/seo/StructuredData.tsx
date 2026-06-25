@@ -3,7 +3,7 @@ const structuredData = {
   "@type": "ProfessionalService",
   name: "Alexander Olomukoro",
   url: "https://www.olomukoro.uk",
-  image: "https://www.olomukoro.uk/profile.JPEG",
+  image: "https://www.olomukoro.uk/profile-optimized.webp",
   email: "mailto:swankylex@gmail.com",
   founder: {
     "@type": "Person",

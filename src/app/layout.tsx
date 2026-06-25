@@ -65,11 +65,11 @@ export const metadata: Metadata = {
       "Websites, CMS platforms, SaaS landing pages, and AI-enabled web tools built with clear communication and production-ready execution.",
     images: [
       {
-        url: "https://www.olomukoro.uk/og-image.png",
+        url: "https://www.olomukoro.uk/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Alexander Olomukoro freelance web and AI development services",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
       "Alexander Olomukoro | Freelance Web Developer & AI Integration Specialist",
     description:
       "I build websites, CMS platforms, SaaS landing pages, and AI-enabled web tools for clients who want clarity from discovery to launch.",
-    images: ["https://www.olomukoro.uk/og-image.png"],
+    images: ["https://www.olomukoro.uk/og-image.jpg"],
     creator: "@xandersavage7",
   },
   robots: {

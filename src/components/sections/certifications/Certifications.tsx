@@ -10,23 +10,23 @@ import { cn } from "@/lib/utils";
 
 const certifications = [
   {
-    src: "/certificates/web-development-bootcamp.jpg",
+    src: "/certificates/web-development-bootcamp.webp",
     alt: "The Complete 2020 Web Development Bootcamp",
   },
   {
-    src: "/certificates/advanced-css-and-sass.jpg",
+    src: "/certificates/advanced-css-and-sass.webp",
     alt: "Advanced CSS and Sass: Flexbox, Grid, Animations and More!",
   },
   {
-    src: "/certificates/c-sharp-unity-developer.jpg",
+    src: "/certificates/c-sharp-unity-developer.webp",
     alt: "Complete C# Unity Game Developer 2D",
   },
   {
-    src: "/certificates/complete-node-js-developer.jpg",
+    src: "/certificates/complete-node-js-developer.webp",
     alt: "The Complete Node.js Developer Course (3rd Edition)",
   },
   {
-    src: "/certificates/data-science-and-ai-masters.jpg",
+    src: "/certificates/data-science-and-ai-masters.webp",
     alt: "Data Science and AI Masters 2026",
   },
 ];
