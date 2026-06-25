@@ -141,13 +141,9 @@ export function AboutTerminal() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // When terminal becomes visible, set isVisible to true
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Once we've seen it, no need to keep observing
-          if (terminalRef.current) {
-            observer.unobserve(terminalRef.current);
-          }
+          observer.unobserve(entry.target);
         }
       },
       {
@@ -156,13 +152,14 @@ export function AboutTerminal() {
       }
     );
 
-    if (terminalRef.current) {
-      observer.observe(terminalRef.current);
+    const currentRef = terminalRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (terminalRef.current) {
-        observer.unobserve(terminalRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -183,7 +180,7 @@ export function AboutTerminal() {
               delay={timings.response1Start}
               className="text-green-600 dark:text-green-500"
             >
-              Alexander Olomukoro - Full Stack Developer
+              Alexander Olomukoro - Freelance Web + AI Developer
             </AnimatedSpan>
 
             {/* Command 2: cat skills.json */}
@@ -199,11 +196,12 @@ export function AboutTerminal() {
               delay={timings.response2Start}
               className="text-blue-600 dark:text-blue-500"
             >
-              {`{
+{`{
   "frontend": ["React", "Next.js"],
-  "backend": ["Node.js", "Express"],
-  "database": ["MongoDB", "PostgreSQL"],
-  "devOps": ["Docker", "AWS"]
+  "cms": ["Sanity", "Client handoff"],
+  "backend": ["Node.js", "FastAPI"],
+  "ai": ["AI SDK", "Python"],
+  "launch": ["Vercel", "GitHub"]
 }`}
             </AnimatedSpan>
 
@@ -222,7 +220,7 @@ export function AboutTerminal() {
                   a1b2c3d
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  E-commerce platform
+                  Rammies Vacation
                 </span>
               </div>
               <div className="flex">
@@ -230,7 +228,7 @@ export function AboutTerminal() {
                   e4f5g6h
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  AI recommendation engine
+                  Fosh Estate
                 </span>
               </div>
               <div className="flex">
@@ -238,7 +236,7 @@ export function AboutTerminal() {
                   i7j8k9l
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  Collaboration tool
+                  Threhills Equipments
                 </span>
               </div>
             </AnimatedSpan>

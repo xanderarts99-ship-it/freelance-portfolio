@@ -1,108 +1,101 @@
-// components/sections/hero.tsx
 "use client";
 
-import { Meteors } from "@/components/magicui/meteors";
+import { AuroraText } from "@/components/magicui/aurora-text";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { Meteors } from "@/components/magicui/meteors";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { ShinyButton } from "@/components/magicui/shiny-button";
-import { AuroraText } from "@/components/magicui/aurora-text";
+
+const heroCtaClass =
+  "inline-flex h-12 w-[168px] items-center justify-center px-3 py-0 text-sm sm:w-[200px] sm:text-base md:text-base";
 
 export function Hero() {
   return (
-    <div
-      className={
-        "relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-slate-950 pb-16 sm:pb-0" // Added bottom padding on mobile
-      }
-    >
-      {/* Dark meteors with varied sizes */}
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-slate-950 pb-16 sm:pb-0">
       <Meteors
         number={150}
         minSize={0.6}
         maxSize={4.5}
         minDuration={5}
         maxDuration={15}
-        colors={[
-          "#334155", // slate-700
-          "#1e293b", // slate-800
-          "#475569", // slate-600
-        ]}
+        colors={["#334155", "#1e293b", "#475569"]}
         className="z-0 opacity-90"
       />
 
-      {/* Main content with proper spacing - reduced vertical padding on small screens */}
-      <div className="relative z-10 px-4 sm:px-6 w-full max-w-5xl mx-auto py-8 sm:py-12 md:py-16">
-        <div className="flex flex-col items-center justify-center text-center space-y-8 sm:space-y-6 md:space-y-10">
-          {/* Name with increased spacing - reduced text size on smallest screens */}
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
+        <div className="flex flex-col items-center justify-center space-y-7 text-center sm:space-y-6 md:space-y-9">
+          <BlurFade delay={0.2} inView>
+            <div className="inline-flex items-center rounded-full border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-100 backdrop-blur-md font-body">
+              Freelance web development for businesses ready to look serious
+            </div>
+          </BlurFade>
+
           <BlurFade delay={0.25} inView>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-amber-50 font-heading">
+            <h1 className="text-4xl text-amber-50 sm:text-5xl md:text-6xl lg:text-7xl font-heading">
               Alexander Olomukoro
             </h1>
           </BlurFade>
 
-          {/* Role with proper spacing - reduced text size on smallest screens */}
-          <BlurFade delay={0.5 * 2} inView>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-amber-50 font-heading">
-              <AuroraText>Full Stack Developer & ML/AI Engineer</AuroraText>
+          <BlurFade delay={1} inView>
+            <h2 className="text-3xl font-bold tracking-tight text-amber-50 sm:text-4xl md:text-5xl lg:text-6xl font-heading">
+              <AuroraText>Websites, CMS platforms & AI-enabled tools</AuroraText>
             </h2>
           </BlurFade>
 
-          {/* Tech stack pills - centered properly with spacing - smaller on mobile */}
-          <div className="w-full flex justify-center pt-2 sm:pt-4">
-            <BlurFade delay={0.5 * 3} inView>
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl">
+          <div className="flex w-full justify-center pt-2 sm:pt-4">
+            <BlurFade delay={1.5} inView>
+              <div className="flex max-w-3xl flex-wrap justify-center gap-2 sm:gap-3">
                 {[
-                  "TypeScript",
-                  "React",
-                  "Next.js",
-                  "Node.js",
-                  "Python",
-                  "scikit-learn",
-                  "PyTorch",
-                  "FastAPI",
-                  "and more...",
-                ].map((tech) => (
+                  "Company websites",
+                  "CMS handoff",
+                  "SaaS landing pages",
+                  "AI workflow prototypes",
+                  "Fast launches",
+                  "Client-owned accounts",
+                ].map((offer) => (
                   <span
-                    key={tech}
-                    className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base md:text-lg bg-slate-800/70 text-gray-300 rounded-full border border-slate-700/50 font-body"
+                    key={offer}
+                    className="rounded-full border border-slate-700/50 bg-slate-800/70 px-3 py-1.5 text-sm text-gray-300 sm:px-4 sm:py-2 sm:text-base md:text-lg font-body"
                   >
-                    {tech}
+                    {offer}
                   </span>
                 ))}
               </div>
             </BlurFade>
           </div>
 
-          {/* Brief introduction - hidden on mobile, visible on md screens and up */}
-          <BlurFade delay={0.5 * 4} inView>
-            <p className=" text-lg md:text-xl lg:text-2xl text-gray-300 mb-5 sm:mb-10 max-w-3xl font-body">
-              Building production-grade web applications and ML systems — from
-              React frontends and Node.js APIs to scikit-learn pipelines and
-              deep learning models.
+          <BlurFade delay={2} inView>
+            <p className="mb-5 max-w-3xl text-lg text-gray-300 sm:mb-10 md:text-xl lg:text-2xl font-body">
+              I help founders and small businesses turn ideas into polished
+              websites, content-managed platforms, landing pages, and practical
+              AI features with clear scope, fast execution, and calm handoff.
             </p>
           </BlurFade>
 
-          {/* Call to action buttons with increased spacing - adjusted for mobile */}
-          <BlurFade delay={0.5 * 5} inView>
-            <div className="flex flex-row gap-3 sm:gap-6 justify-center mt-2 sm:mt-4 md:mt-6 mb-6 sm:mb-0 w-full font-body">
-              <a href="https://github.com/xandersavage">
-                <RainbowButton className="hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out">
-                  View My Work
+          <BlurFade delay={2.5} inView>
+            <div className="mb-6 mt-2 flex w-full flex-row justify-center gap-3 sm:mb-0 sm:mt-4 sm:gap-6 md:mt-6 font-body">
+              <a href="#contact" aria-label="Start a project inquiry">
+                <RainbowButton
+                  className={`${heroCtaClass} transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg`}
+                >
+                  Start a Project
                 </RainbowButton>
               </a>
-              <a href="mailto:swankylex@gmail.com">
+              <a
+                href="#projects"
+                aria-label="View client work and case studies"
+              >
                 <ShinyButton
                   speed={2.5}
-                  className="text-base sm:text-lg md:text-xl px-4 sm:px-6 py-2 sm:py-2.5 md:py-3 w-[120px] sm:w-[140px] md:w-[160px] cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                  className={`${heroCtaClass} cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg`}
                 >
-                  Hire Me
+                  View Case Studies
                 </ShinyButton>
               </a>
             </div>
           </BlurFade>
         </div>
       </div>
-
-      {/* Scroll indicator removed to avoid additional overlap issues */}
     </div>
   );
 }

@@ -71,10 +71,11 @@ export function About() {
       "TailwindCSS",
       "Redux",
       "Framer Motion",
+      "Motion",
     ];
-    const backendSkills = ["Node.js", "Express", "REST API", "GraphQL"];
-    const databaseSkills = ["MongoDB", "PostgreSQL", "Redis"];
-    const toolsSkills = ["Git", "Docker", "AWS", "CI/CD"];
+    const backendSkills = ["Node.js", "Express", "FastAPI", "REST API", "GraphQL", "AI SDK"];
+    const databaseSkills = ["MongoDB", "PostgreSQL", "Redis", "Sanity"];
+    const toolsSkills = ["Git", "Docker", "AWS", "CI/CD", "Vercel"];
     const testingSkills = ["Jest", "React Testing Library"];
 
     // Determine category

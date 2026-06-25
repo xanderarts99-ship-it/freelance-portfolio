@@ -1,24 +1,25 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Container } from "@/components/layout/Container";
+import { useEffect, useRef, useState } from "react";
+import type { HTMLAttributes } from "react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import {
+  CalendarDays,
+  CheckCircle2,
+  Github,
+  Linkedin,
+  Mail,
+  MessageSquareText,
+} from "lucide-react";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { Mail, Send, Sparkles } from "lucide-react";
+import { Container } from "@/components/layout/Container";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { ShinyButton } from "@/components/magicui/shiny-button";
+import { cn } from "@/lib/utils";
 
-type IconProps = React.HTMLAttributes<SVGElement>;
+type IconProps = HTMLAttributes<SVGElement>;
 
 const Icons = {
-  linkedin: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <title>LinkedIn</title>
-      <path
-        fill="currentColor"
-        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-      />
-    </svg>
-  ),
   x: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>X</title>
@@ -28,27 +29,18 @@ const Icons = {
       />
     </svg>
   ),
-  github: (props: IconProps) => (
-    <svg viewBox="0 0 438.549 438.549" {...props}>
-      <path
-        fill="currentColor"
-        d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.959 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"
-      />
-    </svg>
-  ),
 };
 
-// Social links data
 const socialLinks = [
   {
     name: "GitHub",
-    icon: Icons.github,
+    icon: Github,
     href: "https://github.com/xandersavage",
-    color: "hover:text-gray-900 dark:hover:text-gray-100",
+    color: "hover:text-slate-900 dark:hover:text-white",
   },
   {
     name: "LinkedIn",
-    icon: Icons.linkedin,
+    icon: Linkedin,
     href: "https://www.linkedin.com/in/alexander-olomukoro-699255199/",
     color: "hover:text-blue-600 dark:hover:text-blue-400",
   },
@@ -59,6 +51,49 @@ const socialLinks = [
     color: "hover:text-sky-500 dark:hover:text-sky-400",
   },
 ];
+
+const briefPrompts = [
+  "What are you building?",
+  "Who is it for?",
+  "Do you need CMS, payments, AI, or a landing page?",
+  "Do you already have copy, brand assets, and examples?",
+  "What timeline and budget range should I plan around?",
+];
+
+const inquiryHref = `mailto:swankylex@gmail.com?subject=${encodeURIComponent(
+  "Project inquiry from olomukoro.uk"
+)}&body=${encodeURIComponent(`Hi Alexander,
+
+I want to discuss a project.
+
+Project idea:
+Business or product:
+Main goal:
+Pages/features needed:
+CMS or AI needed:
+Timeline:
+Budget range:
+Links/assets:
+
+`)}`;
+
+const discoveryHref = `mailto:swankylex@gmail.com?subject=${encodeURIComponent(
+  "Discovery call request from olomukoro.uk"
+)}&body=${encodeURIComponent(`Hi Alexander,
+
+I would like to request a discovery call.
+
+Project idea:
+Preferred days/times:
+Timezone:
+Preferred platform:
+Budget/timeline:
+Links/assets:
+
+`)}`;
+
+const contactCtaClass =
+  "inline-flex h-12 w-full items-center justify-center px-4 py-0 text-sm sm:w-[210px] sm:text-base";
 
 export function Contact() {
   const [isInView, setIsInView] = useState(false);
@@ -77,18 +112,6 @@ export function Contact() {
     springConfig
   );
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
-  // Intersection observer for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -109,187 +132,164 @@ export function Contact() {
     };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      // Here you would typically send the form data to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setSubmitStatus("success");
-      setSuccessMessage("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } catch {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden min-h-screen flex items-center"
+      className="relative flex min-h-screen items-center overflow-hidden bg-white py-24 dark:bg-slate-900"
     >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(124,58,237,0.12),transparent_30%)]" />
+
       <Container className="relative z-10">
-        {/* Section Header */}
         <BlurFade delay={0.2} inView={isInView}>
-          <motion.div className="text-center mb-16" style={{ y, opacity }}>
-            <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 font-heading"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Get in Touch
-            </motion.h2>
-            <motion.p
-              className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl mx-auto font-body"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Have a project in mind or want to collaborate? I&apos;d love to
-              hear from you.
-            </motion.p>
-            <motion.div
-              className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-6"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            />
+          <motion.div className="mb-16 text-center" style={{ y, opacity }}>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300 font-heading">
+              Project inquiry
+            </p>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white font-heading">
+              Tell me what you&apos;re building.
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-700 dark:text-slate-300 font-body">
+              Send the goal, timeline, budget range, and any links or assets
+              you already have. I will reply with next questions, fit, and a
+              sensible path to scope the work.
+            </p>
+            <div className="mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
           </motion.div>
         </BlurFade>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
             transition={{ duration: 0.8 }}
+            className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-6 shadow-xl shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950/70 dark:shadow-black/20 md:p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {[
-                  { id: "name", label: "Name", type: "text" },
-                  { id: "email", label: "Email", type: "email" },
-                  { id: "message", label: "Message", type: "textarea" },
-                ].map((field) => (
-                  <div key={field.id} className="relative">
-                    <label
-                      htmlFor={field.id}
-                      className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                    >
-                      {field.label}
-                    </label>
-                    {field.type === "textarea" ? (
-                      <textarea
-                        id={field.id}
-                        value={formData[field.id as keyof typeof formData]}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            [field.id]: e.target.value,
-                          })
-                        }
-                        rows={4}
-                        className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                        required
-                      />
-                    ) : (
-                      <input
-                        type={field.type}
-                        id={field.id}
-                        value={formData[field.id as keyof typeof formData]}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            [field.id]: e.target.value,
-                          })
-                        }
-                        className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                        required
-                      />
-                    )}
+            <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl" />
+
+            <div className="relative z-10">
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600 text-white">
+                <MessageSquareText size={22} />
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-heading">
+                Send a project brief
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-slate-700 dark:text-slate-300 font-body">
+                This is currently a direct email inquiry path. When a real form
+                backend is added, submissions can go through a database or email
+                service instead of mailto.
+              </p>
+
+              <div className="mt-6 grid gap-3">
+                {briefPrompts.map((prompt) => (
+                  <div
+                    key={prompt}
+                    className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white/70 p-3 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 font-body"
+                  >
+                    <CheckCircle2
+                      size={16}
+                      className="mt-0.5 shrink-0 text-emerald-500"
+                    />
+                    <span>{prompt}</span>
                   </div>
                 ))}
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                  <Send className="w-4 h-4" />
-                </button>
+              </div>
 
-                {submitStatus === "success" && (
-                  <div className="flex items-center justify-center gap-2 text-green-600 dark:text-green-400 mt-4">
-                    <Sparkles className="w-5 h-5" />
-                    {successMessage}
-                  </div>
-                )}
-                {submitStatus === "error" && (
-                  <p className="text-red-500 text-center mt-4">
-                    Something went wrong. Please try again.
-                  </p>
-                )}
-            </form>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <RainbowButton
+                  type="button"
+                  onClick={() => {
+                    window.location.href = inquiryHref;
+                  }}
+                  className={contactCtaClass}
+                >
+                  Email Project Brief
+                </RainbowButton>
+                <ShinyButton
+                  type="button"
+                  speed={2.5}
+                  onClick={() => {
+                    window.location.href = "mailto:swankylex@gmail.com";
+                  }}
+                  className={contactCtaClass}
+                >
+                  swankylex@gmail.com
+                </ShinyButton>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Social Links and Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 lg:pl-12"
+            className="space-y-6 lg:pl-4"
           >
-            <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
-                Connect with me
+            <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950/70 md:p-8">
+              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white font-heading">
+                What happens next
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 text-lg">
-                Feel free to reach out through any of these platforms or send me
-                a message directly.
-              </p>
+              <div className="mt-5 space-y-4">
+                {[
+                  "I review the scope and ask any missing questions.",
+                  "If it is a fit, we define deliverables, timeline, and payment milestones.",
+                  "You get a clear proposal before work begins.",
+                ].map((item, index) => (
+                  <div key={item} className="flex gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
+                      {index + 1}
+                    </span>
+                    <p className="text-slate-700 dark:text-slate-300 font-body">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <Mail className="w-6 h-6 text-blue-500" />
-                <a
-                  href="mailto:swankylex@gmail.com"
-                  className="text-lg text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                >
-                  swankylex@gmail.com
-                </a>
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950/70 md:p-8">
+              <div className="flex items-center gap-3">
+                <CalendarDays className="h-6 w-6 text-blue-500" />
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white font-heading">
+                  Discovery call
+                </h3>
               </div>
+              <p className="mt-3 text-slate-600 dark:text-slate-400 font-body">
+                Send a quick call request with your preferred days, timezone,
+                platform, and project context. I&apos;ll reply with 2-3 time
+                options that work.
+              </p>
+              <a
+                href={discoveryHref}
+                className="mt-5 inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-medium text-slate-800 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-blue-400 dark:hover:text-blue-300 font-body"
+              >
+                <Mail size={16} />
+                Request Discovery Call
+              </a>
+            </div>
 
-              <div className="flex space-x-6 pt-4">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950/70 md:p-8">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white font-heading">
+                Connect elsewhere
+              </h3>
+              <div className="mt-5 flex gap-4">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.name}
                     className={cn(
-                      "p-3 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700",
-                      "transition-all duration-200 hover:scale-110",
+                      "rounded-full border border-slate-200 bg-slate-100 p-3 text-slate-700 transition-all duration-200 hover:scale-110 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200",
                       social.color
                     )}
                   >
-                    <social.icon className="w-6 h-6" />
+                    <social.icon className="h-6 w-6" />
                   </a>
                 ))}
               </div>
-            </div>
-            
-            <div className="mt-12 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-               <p className="text-slate-700 dark:text-slate-300 italic text-center text-lg">
-                  &ldquo;Let&apos;s create something amazing together&rdquo;
-               </p>
             </div>
           </motion.div>
         </div>

@@ -21,8 +21,69 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Alexander Olomukoro",
-  description: "A showcase of my work and skills",
+  metadataBase: new URL("https://www.olomukoro.uk"),
+  title: {
+    default:
+      "Alexander Olomukoro | Freelance Web Developer & AI Integration Specialist",
+    template: "%s | Alexander Olomukoro",
+  },
+  description:
+    "Freelance web developer helping startups and growing businesses launch fast websites, CMS-powered company sites, SaaS landing pages, and AI-enabled web tools.",
+  applicationName: "Alexander Olomukoro Portfolio",
+  authors: [{ name: "Alexander Olomukoro", url: "https://www.olomukoro.uk" }],
+  creator: "Alexander Olomukoro",
+  publisher: "Alexander Olomukoro",
+  keywords: [
+    "freelance web developer",
+    "Next.js developer",
+    "React developer",
+    "CMS website developer",
+    "SaaS landing page developer",
+    "AI integration developer",
+    "Nigeria freelance developer",
+    "web developer for startups",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.olomukoro.uk",
+    siteName: "Alexander Olomukoro",
+    title:
+      "Alexander Olomukoro | Freelance Web Developer & AI Integration Specialist",
+    description:
+      "Websites, CMS platforms, SaaS landing pages, and AI-enabled web tools built with clear communication and production-ready execution.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Alexander Olomukoro freelance web and AI development services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Alexander Olomukoro | Freelance Web Developer & AI Integration Specialist",
+    description:
+      "I build websites, CMS platforms, SaaS landing pages, and AI-enabled web tools for clients who want clarity from discovery to launch.",
+    images: ["/opengraph-image"],
+    creator: "@xandersavage7",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
